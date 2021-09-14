@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('../layouts/header'); -%>
+    <body>
+        <div class="container-scroller">
+            <%- include('../layouts/navbar'); -%>
+            <div class="container-fluid page-body-wrapper">
+                <%- include('../layouts/sidebar'); -%>
+                <div class="main-panel">
+                    <div class="content-wrapper">
+                        <div class="page-header">
+                            <h3 class="page-title">
+                              Categories
+                            </h3>
+							<a class="nav-link " href="/category/create">
+								<span class="btn btn-primary">+ Create new</span>
+							</a>
+                        </div>
+                        <div class="card">
+                            <div class="card-body">
+								<%- include('../layouts/success-alert'); -%>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="table-responsive">
+                                            <table id="order-listing" class="table">
+                                                <thead>
+                                                    <tr>
+                                                        <th>#</th>
+                                                        <th>Name</th>
+                                                        <th>Slug</th>
+                                                        <th>Actions</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+											        <% for (var i = 0; i < category.length; i++) { %>
+                                                    <tr>
+                                                        <td><%= i + 1 %></td>
+                                                        <td><%= category[i].name %></td>
+                                                        <td><%= category[i].slug %></td>
+                                                        <td>
+                                                            <a href="/category/edit/<%= category[i]._id %>"><label class="badge badge-info"><i class="fas fa-pencil-alt"></i> Edit</label></a>
+															<span class="text-center">
+																<button type="button" class="badge badge-danger btn-sm" data-toggle="modal" data-target="#exampleModal-2"><i class="fas fa-trash"></i> Delete</button>
+															</span>
+															<div class="modal fade" id="exampleModal-2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel-2" aria-hidden="true">
+																<div class="modal-dialog" role="document">
+																	<div class="modal-content">
+																		<div class="modal-header">
+																			<h3 class="modal-title" id="exampleModalLabel-2">Are You Sure?</h3>
+																			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+																				<span aria-hidden="true">&times;</span>
+																			</button>
+																		</div>
+																		<div class="modal-body">
+																			<h5>You won't be able to recover this</h5>
+																		</div>
+																		<div class="modal-footer">
+																			<a href="/category/delete/<%= category[i]._id %>"><button type="button" class="btn btn-danger btn-lg">Confirm</button></a>
+																			<button type="button" class="btn btn-light btn-lg" data-dismiss="modal">Cancel</button>
+																		</div>
+																	</div>
+																</div>
+															</div>
+                                                        </td>
+                                                    </tr>
+													<% } %>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>       
+                    </div>
+                        <%- include('../layouts/footer'); -%>
+                        <%- include('../layouts/scripts'); -%>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
+        

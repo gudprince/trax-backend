@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('../layouts/header'); -%>
+    <body>
+        <div class="container-scroller">
+            <%- include('../layouts/navbar'); -%>
+            <div class="container-fluid page-body-wrapper">
+                <%- include('../layouts/sidebar'); -%>
+                <div class="main-panel">
+                    <div class="content-wrapper">
+                        <div class="page-header">
+                            <h3 class="page-title">
+                              Product
+                            </h3>
+                        </div>
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title">Edit Product</h4>
+                                <div class="row">
+                                    <div class="col-md-8">
+                                        <form class="" id=""  method="POST" action="/user/update/<%=user._id%>"  enctype="multipart/form-data">
+                                            <div class="row">
+                                                <div class="col-md-6">
+												    <div class="form-group">
+													    <label for="name">First Name</label>
+													    <input id="name" class="form-control" name="first_name" value="<%=user.first_name%>" type="text" required>
+												    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="name">Last Name</label>
+                                                        <input id="name" class="form-control"  value="<%=user.last_name%>" name="last_name" type="text" required>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+												    <div class="form-group">
+													    <label for="price">Email</label>
+													    <input id="email" class="form-control"  value="<%=user.email %>" name="email" type="email" required>
+                                                       
+                                                        <span class="text-danger"><%= errors %></span>
+                                                       
+												    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+													    <label for="password">Password</label>
+													    <input id="password" class="form-control" name="password" type="password" >
+												    </div>
+												</div>   
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+												    <div class="form-group">
+                                                        <label>Nationality</label>
+                                                        <select class="js-example-basic-single w-100" name="country" required>
+                                                            <option value="">Select Country</option>
+                                                            <% for (var i = 0; i < country.length; i++) { %>
+                                                                <% if (user.country.name == country[i].name) {%>
+                                                            <option value="<%= country[i]._id %>" selected><%=  country[i].name %></option>
+                                                            <% } else {%>
+                                                            <option value="<%=  country[i]._id %>"><%=  country[i].name %></option>
+                                                            <% }%>
+                                                            <% }%>
+                                                        </select>
+                                                    </div>
+                                                </div> 
+                                                <div class="col-md-6">
+												    <div class="form-group">
+                                                        <label>State</label>
+                                                        <select class="state js-example-basic-single w-100" name="state" required>
+                                                            <option value="">Select State</option>
+                                                            <% for (var i = 0; i < state.length; i++) { %>
+                                                                <% if (user.state.state == state[i].state) {%>
+                                                            <option value="<%= state[i]._id %>" selected  data-id="<%= state[i]._id %>"><%=  state[i].state %></option>
+                                                            <% } else {%>
+                                                            <option value="<%= state[i]._id %>"  data-id="<%= state[i]._id %>"><%=  state[i].state %></option>
+                                                            <% }%>
+                                                            <% }%>
+                                                        </select>
+                                                    </div>
+                                                </div>   
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label>Lga</label>
+                                                        <select id="lga" class="js-example-basic-single w-100" name="lga" required>
+                                                            <% for (var i = 0; i < user.state.lgas.length; i++) { %>
+                                                                <% if (user.lga == user.state.lgas[i]) {%>
+                                                            <option value="<%= user.state.lgas[i] %>" selected  data-id="<%= user.state.lgas[i] %>"><%= user.state.lgas[i] %></option>
+                                                            <% } else {%>
+                                                            <option value="<%= user.state.lgas[i]%>"  data-id="<%= user.state.lgas[i] %>"> <%= user.state.lgas[i] %></option>
+                                                            <% }%>
+                                                            <% }%>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+													    <label for="image">Image</label>
+													    <input id="image" class="form-control" name="image" type="file" >
+												    </div>
+												</div>   
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-6">
+												    <div class="form-group">
+													    <label for="price">Phone Number</label>
+													    <input id="phone" class="form-control" name="phone_number"  value="<%=user.phone_number%>" type="number" required>
+												    </div>
+                                                </div> 
+                                                <div class="col-md-6">
+												    <div class="form-group">
+													    <label for="price">Address</label>
+													    <input id="address" class="form-control"  value="<%=user.address%>" name="address" type="text" required>
+												    </div>
+                                                </div>   
+                                            </div>                
+                                            <input class="btn btn-primary" type="submit" value="Update">
+										</form>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div id="lightgallery" class="lightGallery">
+                                            <a href="#" class="image-tile"><img src="<%=user.image%>" alt="image small"></a>
+                                          </div>
+                                    </div>
+                                </div>
+                            </div>       
+                        </div>
+                        <%- include('../layouts/footer'); -%>
+                        <%- include('../layouts/scripts'); -%>
+                        <script>
+                            $('.state').change(function() {
+    
+                                let selected = $(this).find('option:selected');
+                                let extra = selected.data('id');
+                                $.ajax({
+                                    type: "GET",
+                                    url: "/user/lga/"+extra,
+                                    success: function (response) {
+                                        var len = response.length;
+    
+                                        $('#lga').empty();
+                                        for(var i =0; i<len; i++) {
+                                        var name = response[i];
+    
+                                        $('#lga').append("<option value='"+name+"'>"+name+"</option>");
+                                        }      
+                                    }
+                               });
+                            });
+                            </script>
+                    </div>
+                </div>
+            </div>
+		</div>
+    </body>
+</html>
